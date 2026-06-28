@@ -64,7 +64,6 @@ struct sysmon_query_prof_data {
 enum DspDomainId {
     DSP_ADSP = ADSP_DOMAIN_ID,
     DSP_NPU0 = CDSP_DOMAIN_ID,
-    DSP_MAX  = CDSP_DOMAIN_ID,
 };
 
 enum DspReturnCode {
@@ -77,10 +76,15 @@ enum DspReturnCode {
     RETURN_CODE_DSP_SYSMON_QUERY_DEINIT_FAILED,
 };
 
-enum DspReturnCode qcom_dsp_init(enum DspDomainId);
+/* Opaque session context returned by qcom_dsp_open(). */
+struct qcom_dsp_ctx;
 
-struct sysmon_query_prof_data* qcom_dsp_get_prof_data(enum DspDomainId domain_id, int* no_metrics);
+struct qcom_dsp_ctx *qcom_dsp_open(enum DspDomainId domain_id);
 
-enum DspReturnCode qcom_dsp_deinit(enum DspDomainId);
+struct sysmon_query_prof_data *qcom_dsp_get_prof_data(struct qcom_dsp_ctx *ctx, int *no_metrics);
+
+enum DspReturnCode qcom_dsp_get_arch_version(struct qcom_dsp_ctx *ctx, unsigned int *arch_ver);
+
+void qcom_dsp_close(struct qcom_dsp_ctx *ctx);
 
 #endif /* QCOM_DSP_H_ */
