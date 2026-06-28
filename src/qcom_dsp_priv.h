@@ -1,7 +1,7 @@
 #ifndef QCOM_DSP_PRIV_H_
 #define QCOM_DSP_PRIV_H_
 
-#include "qcom_dsp.h"
+#include "qcom_dsp_types.h"
 #include <stdint.h>
 
 /*
