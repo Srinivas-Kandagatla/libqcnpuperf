@@ -15,6 +15,7 @@ struct qcom_dsp_ctx {
     enum DspDomainId            domain_id;
     uint64_t                    h;         /* remote_handle64 */
     struct sysmon_query_prof_data *prof_data;
+    unsigned int                arch_ver;  /* cached; 0 = not yet queried */
 };
 
 #endif /* QCOM_DSP_PRIV_H_ */
